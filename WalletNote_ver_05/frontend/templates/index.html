@@ -1,0 +1,28 @@
+<!-- frontend/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WalletNote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="gold-black">
+
+<div class="container center">
+    <img
+        src="{{ url_for('static', filename='walletnote_logo.png') }}"
+        alt="WalletNote Logo"
+        class="logo"
+    >
+
+    <h1 class="title">WalletNote</h1>
+    <p class="subtitle">Smart Expense Tracking</p>
+
+    <div class="button-group">
+        <a href="/login" class="primary-btn">Log In</a>
+        <a href="/signup" class="secondary-btn">Sign Up</a>
+    </div>
+</div>
+
+</body>
+</html>

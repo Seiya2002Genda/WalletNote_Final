@@ -1,0 +1,65 @@
+<!-- frontend/templates/signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up | WalletNote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="gold-black">
+
+<div class="container center narrow">
+
+    <h2 class="title">Create Account</h2>
+
+    <form id="signupForm" class="form">
+        <input
+            type="text"
+            id="username"
+            class="input-field"
+            placeholder="Username"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            class="input-field"
+            placeholder="Email Address"
+            required
+        >
+
+        <input
+            type="password"
+            id="password"
+            class="input-field"
+            placeholder="Password"
+            required
+        >
+
+        <button type="submit" class="primary-btn">
+            Sign Up
+        </button>
+    </form>
+
+    <p class="link-text">
+        Already have an account?
+        <a href="/login">Log In</a>
+    </p>
+
+    <!-- Error message area -->
+    <p id="errorMessage" class="error-text hidden"></p>
+
+</div>
+
+<script src="{{ url_for('static', filename='style.js') }}"></script>
+<script>
+    // Delegate signup logic to style.js
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        WalletNote.signup();
+    });
+</script>
+
+</body>
+</html>

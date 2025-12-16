@@ -1,0 +1,57 @@
+<!-- frontend/templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In | WalletNote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="gold-black">
+
+<div class="container center narrow">
+
+    <h2 class="title">Log In</h2>
+
+    <form id="loginForm" class="form">
+        <input
+            type="text"
+            id="username"
+            class="input-field"
+            placeholder="Username"
+            required
+        >
+
+        <input
+            type="password"
+            id="password"
+            class="input-field"
+            placeholder="Password"
+            required
+        >
+
+        <button type="submit" class="primary-btn">
+            Log In
+        </button>
+    </form>
+
+    <p class="link-text">
+        Don’t have an account?
+        <a href="/signup">Sign Up</a>
+    </p>
+
+    <!-- Error message area -->
+    <p id="errorMessage" class="error-text hidden"></p>
+
+</div>
+
+<script src="{{ url_for('static', filename='style.js') }}"></script>
+<script>
+    // Delegate login logic to style.js
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        WalletNote.login();
+    });
+</script>
+
+</body>
+</html>

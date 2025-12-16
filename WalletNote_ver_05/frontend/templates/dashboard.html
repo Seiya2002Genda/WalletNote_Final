@@ -1,0 +1,109 @@
+<!-- frontend/templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | WalletNote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="gold-black">
+
+<header class="header">
+    <h1 class="title">Dashboard</h1>
+    <nav class="nav">
+        <a href="/setting">Settings</a>
+        <button id="logoutBtn" class="link-btn">Log Out</button>
+    </nav>
+</header>
+
+<main class="dashboard-container container">
+
+    <!-- ===== Manual Input ===== -->
+    <section class="card">
+        <h2 class="section-title">Add Record</h2>
+
+        <form id="recordForm" class="form horizontal">
+            <input type="date" id="recordDate" class="input-field" required>
+            <input type="text" id="service" class="input-field" placeholder="Service / Product" required>
+            <input type="number" id="price" class="input-field" placeholder="Price" step="0.01" required>
+            <button type="submit" class="primary-btn">Save</button>
+        </form>
+    </section>
+
+    <!-- ===== OCR Upload ===== -->
+    <section class="card">
+        <h2 class="section-title">Receipt OCR</h2>
+
+        <form id="ocrForm" enctype="multipart/form-data" class="form horizontal">
+            <input type="file" id="receiptImage" accept="image/*" required>
+            <button type="submit" class="secondary-btn">Upload</button>
+        </form>
+
+        <p id="ocrResult" class="info-text hidden"></p>
+    </section>
+
+    <!-- ===== Records Table ===== -->
+    <section class="card">
+        <h2 class="section-title">Records</h2>
+
+        <table class="record-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Service</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for r in records %}
+                <tr>
+                    <td>{{ r.date }}</td>
+                    <td>{{ r.service_or_product }}</td>
+                    <td>{{ r.price }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ===== Graphs ===== -->
+    <section class="card">
+        <h2 class="section-title">Analytics</h2>
+
+        <div class="graph-container">
+            <canvas id="monthlyGraph"></canvas>
+            <canvas id="yearlyGraph"></canvas>
+            <canvas id="dailyGraph"></canvas>
+        </div>
+    </section>
+
+</main>
+
+<!-- Inject graph data safely -->
+<script>
+    const GRAPH_DATA = JSON.parse('{{ graphs | tojson | safe }}');
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='style.js') }}"></script>
+
+<script>
+    document.getElementById("recordForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        WalletNote.addRecord();
+    });
+
+    document.getElementById("ocrForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        WalletNote.uploadOCR();
+    });
+
+    document.getElementById("logoutBtn").onclick = () => {
+        WalletNote.logout();
+    };
+
+    WalletNote.renderGraphs(GRAPH_DATA);
+</script>
+
+</body>
+</html>

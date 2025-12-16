@@ -1,0 +1,82 @@
+<!-- frontend/templates/setting.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings | WalletNote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="gold-black">
+
+<header class="header">
+    <h1 class="title">Settings</h1>
+    <nav class="nav">
+        <a href="/dashboard">Dashboard</a>
+        <button id="logoutBtn" class="link-btn">Log Out</button>
+    </nav>
+</header>
+
+<main class="container settings-container">
+
+    <!-- ===== User Settings ===== -->
+    <section class="card">
+        <h2 class="section-title">User Settings</h2>
+        <p class="info-text">
+            Manage your personal preferences for WalletNote.
+        </p>
+    </section>
+
+    <!-- ===== Currency Settings ===== -->
+    <section class="card">
+        <h2 class="section-title">Currency</h2>
+
+        <form id="currencyForm" class="form horizontal">
+            <label for="currencySelect" class="info-text">
+                Preferred Currency
+            </label>
+
+            <select id="currencySelect" class="input-field" required>
+                <option value="USD">USD – US Dollar</option>
+                <option value="EUR">EUR – Euro</option>
+                <option value="JPY">JPY – Japanese Yen</option>
+                <option value="GBP">GBP – British Pound</option>
+                <option value="CHF">CHF – Swiss Franc</option>
+                <option value="CAD">CAD – Canadian Dollar</option>
+                <option value="AUD">AUD – Australian Dollar</option>
+                <option value="NZD">NZD – New Zealand Dollar</option>
+                <option value="SEK">SEK – Swedish Krona</option>
+                <option value="NOK">NOK – Norwegian Krone</option>
+            </select>
+
+            <button type="submit" class="primary-btn">
+                Save
+            </button>
+        </form>
+
+        <p id="currencyMessage" class="info-text hidden"></p>
+    </section>
+
+</main>
+
+<!-- Inject current currency from Flask -->
+<script>
+    const CURRENT_CURRENCY = "{{ currency }}";
+</script>
+
+<script src="{{ url_for('static', filename='style.js') }}"></script>
+
+<script>
+    WalletNote.initCurrency(CURRENT_CURRENCY);
+
+    document.getElementById("currencyForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        WalletNote.saveCurrency();
+    });
+
+    document.getElementById("logoutBtn").onclick = () => {
+        WalletNote.logout();
+    };
+</script>
+
+</body>
+</html>

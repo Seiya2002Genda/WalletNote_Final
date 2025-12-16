@@ -1,0 +1,175 @@
+/* =====================================================
+   WalletNote Global Style
+   Theme: Gold & Black
+   ===================================================== */
+
+/* ---------- Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+/* ---------- Base ---------- */
+body.gold-black {
+    background: linear-gradient(180deg, #0c0c0c, #161616);
+    color: #e6d8a3;
+    min-height: 100vh;
+}
+
+/* ---------- Layout ---------- */
+.container {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.narrow {
+    max-width: 360px;
+}
+
+.dashboard-container {
+    max-width: 900px;
+}
+
+/* ---------- Header ---------- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.nav a,
+.link-btn {
+    color: #e6d8a3;
+    background: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+/* ---------- Typography ---------- */
+.title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #b8aa78;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* ---------- Cards ---------- */
+.card {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+/* ---------- Forms ---------- */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.input-field,
+select {
+    background: #0f0f0f;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #e6d8a3;
+}
+
+.input-field::placeholder {
+    color: #8d845e;
+}
+
+/* ---------- Buttons ---------- */
+.primary-btn {
+    background: linear-gradient(135deg, #d4af37, #f5e6a8);
+    color: #111;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+/* ---------- Tables ---------- */
+.record-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.record-table th,
+.record-table td {
+    padding: 10px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.record-table th {
+    color: #f5e6a8;
+    text-align: left;
+}
+
+/* ---------- Graph ---------- */
+.graph-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* ---------- Messages ---------- */
+.info-text {
+    font-size: 0.9rem;
+    color: #b8aa78;
+}
+
+.error-text {
+    color: #ff6b6b;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
