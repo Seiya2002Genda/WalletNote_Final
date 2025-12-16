@@ -137,4 +137,4 @@ This project is released for educational purposes only.
 
 Seiya Genda  
 Computer Science × Marketing  
-Aoi Minamiyashiki
+Feat .A.M.
