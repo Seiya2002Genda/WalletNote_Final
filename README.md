@@ -1,6 +1,6 @@
 ## WalletNote_Final
 ## CYBR404_Project_WalletNote
-## WalletNote ver.05
+## WalletNote ver.06
 
 WalletNote is a personal finance management web application developed using Flask.
 The application is designed for students and individual users to record expenses, process receipt images, and visualize financial data.
