@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | WalletNote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="app-header">
+    <h1 class="logo">WalletNote</h1>
+</header>
+
+<main class="auth-container">
+    <form id="loginForm" class="auth-card">
+        <h2>Log In</h2>
+
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit" class="primary-btn full-width">Log In</button>
+
+        <p class="link-text" onclick="location.href='/signup'">Create account</p>
+    </form>
+</main>
+
+<script src="{{ url_for('static', filename='style.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | WalletNote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- =========================
+     Header
+========================= -->
+<header class="app-header">
+    <h1 class="logo">WalletNote</h1>
+    <div>
+        <button class="text-btn" onclick="location.href='/setting'">Setting</button>
+        <button class="text-btn" onclick="location.href='/logout'">Logout</button>
+    </div>
+</header>
+
+<!-- =========================
+     Navigation
+========================= -->
+<nav class="dashboard-nav">
+    <button class="nav-btn active" onclick="switchView('expense', this)">
+        Expense Management
+    </button>
+    <button class="nav-btn" onclick="switchView('income', this)">
+        Income Management
+    </button>
+</nav>
+
+<!-- =========================
+     Main
+========================= -->
+<main class="dashboard-main">
+
+    <!-- Analytics -->
+    <section class="dashboard-left">
+        <h2>Data Analytics</h2>
+        <div class="chart-box">
+            <div class="chart-item">
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div class="chart-item">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chart.js（body の最後） -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='style.js') }}"></script>
+
+
+    <!-- History -->
+    <section class="dashboard-right">
+        <h2>History</h2>
+        <div class="history-list">
+            {% for r in data.recent %}
+                <div class="history-item">
+                    {{ r.record_date }} |
+                    {{ r.record_type | capitalize }} |
+                    {{ r.service }} |
+                    {{ r.price }}
+                </div>
+            {% else %}
+                <div class="history-item">No records yet</div>
+            {% endfor %}
+        </div>
+    </section>
+
+</main>
+
+<!-- =========================
+     Input Area
+========================= -->
+<section class="input-area">
+
+    <!-- Expense -->
+    <div class="manual-input" id="expenseView">
+        <h3>Expense Input</h3>
+        <input type="date" id="expenseDate">
+        <input type="text" id="expenseService" placeholder="Service">
+        <input type="number" id="expensePrice" placeholder="Price">
+        <button class="primary-btn" onclick="submitExpense()">
+            Save Expense
+        </button>
+    </div>
+
+    <!-- Income -->
+    <div class="manual-input hidden" id="incomeView">
+        <h3>Income Input</h3>
+        <input type="date" id="incomeDate">
+        <input type="text" id="incomeService" placeholder="Source">
+        <input type="number" id="incomePrice" placeholder="Amount">
+        <button class="primary-btn" onclick="submitIncome()">
+            Save Income
+        </button>
+    </div>
+
+    <!-- OCR -->
+    <div class="ocr-input">
+        <h3>OCR</h3>
+        <input type="file" id="receiptImage">
+        <button class="secondary-btn" onclick="submitOCR()">
+            Upload
+        </button>
+    </div>
+
+</section>
+
+<script src="{{ url_for('static', filename='style.js') }}"></script>
+</body>
+</html>
